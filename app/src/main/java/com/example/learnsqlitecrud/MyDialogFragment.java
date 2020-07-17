@@ -32,7 +32,7 @@ public class MyDialogFragment extends DialogFragment {
                                 Item item = new Item();
                                 item.firstItem = firstItem.getText().toString();
                                 item.secondItem = secondItem.getText().toString();
-                                new ItemStorage(getContext()).create(item);
+                                new ItemStorage(getContext()).createItem(item);
                             }
                         })
                 .create();

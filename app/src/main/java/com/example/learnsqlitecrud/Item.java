@@ -1,7 +1,5 @@
 package com.example.learnsqlitecrud;
 
-import android.widget.ListAdapter;
-
 public class Item {
 //    int id;
     String firstItem;
@@ -9,4 +7,5 @@ public class Item {
 
     public Item() {
     }
+
 }
