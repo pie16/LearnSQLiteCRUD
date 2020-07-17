@@ -16,8 +16,8 @@ public class ItemStorage {
 
     public void create(Item item) {
         ContentValues values = new ContentValues();
-        values.put("firstItem", item.firstItem);
-        values.put("secondItem", item.secondItem);
+        values.put(DBOpenHelper.COLS_1, item.firstItem);
+        values.put(DBOpenHelper.COLS_2, item.secondItem);
 
         db.insertOrThrow(DBOpenHelper.TABLE_ITEMS, null, values);
     }

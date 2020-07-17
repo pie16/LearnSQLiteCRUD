@@ -11,6 +11,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
     private static final String DB_NAME = "itemBase.db";
     public static final String TABLE_ITEMS = "items";
+    public static final String COLS_1 = "firstItem";
+    public static final String COLS_2 = "secondItem";
+
 
     public DBOpenHelper(@Nullable Context context) {
         super(context, DB_NAME, null, VERSION);
@@ -18,15 +21,17 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE myTable " +
-                "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "firstItem TEXT, " +
-                "secondItem TEXT ) ");
+        String sql = "create table " + TABLE_ITEMS + "(" +
+                " _id integer primary key autoincrement, " +
+                COLS_1 + ", " +
+                COLS_2 +
+                ")";
+                db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS myTable");
+        db.execSQL("DROP TABLE IF EXISTS items");
         onCreate(db);
     }
 }
