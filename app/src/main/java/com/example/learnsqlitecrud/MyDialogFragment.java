@@ -37,4 +37,13 @@ public class MyDialogFragment extends DialogFragment {
                         })
                 .create();
     }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        getActivity().recreate();
+
+    }
+
+
 }
