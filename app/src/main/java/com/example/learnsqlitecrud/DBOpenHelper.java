@@ -11,6 +11,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
     private static final String DB_NAME = "itemBase.db";
     public static final String TABLE_ITEMS = "items";
+    public static final String ID = "_id";
     public static final String COLS_1 = "firstItem";
     public static final String COLS_2 = "secondItem";
 
@@ -22,7 +23,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "create table " + TABLE_ITEMS + "(" +
-                " _id integer primary key autoincrement, " +
+                ID + " integer primary key autoincrement, " +
                 COLS_1 + ", " +
                 COLS_2 +
                 ")";
@@ -31,7 +32,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS items");
+        db.execSQL("DROP TABLE IF EXISTS" + TABLE_ITEMS);
         onCreate(db);
     }
 }

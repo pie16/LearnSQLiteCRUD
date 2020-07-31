@@ -5,7 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,13 +14,29 @@ import androidx.fragment.app.DialogFragment;
 
 public class MyDialogFragment extends DialogFragment {
 
+    private int id;
+
+    public MyDialogFragment() {
+        this.id = 0;
+    }
+
+    public MyDialogFragment(int id) {
+        this.id = id;
+    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+
+        Item item = new ItemStorage(getContext()).getItem(id);
+
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.input_form, null);
-        final TextView firstItem = v.findViewById(R.id.first_item);
-        final TextView secondItem = v.findViewById(R.id.second_item);
+        final EditText firstItem = v.findViewById(R.id.first_item);
+        final EditText secondItem = v.findViewById(R.id.second_item);
+        if (id != 0) {
+            firstItem.setText(item.firstItem);
+            secondItem.setText(item.secondItem);
+        }
 
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
@@ -32,6 +48,10 @@ public class MyDialogFragment extends DialogFragment {
                                 Item item = new Item();
                                 item.firstItem = firstItem.getText().toString();
                                 item.secondItem = secondItem.getText().toString();
+                                if (id != 0) {
+                                    item.id = id;
+                                    new ItemStorage(getContext()).updateItem(item);
+                                }
                                 new ItemStorage(getContext()).createItem(item);
                             }
                         })

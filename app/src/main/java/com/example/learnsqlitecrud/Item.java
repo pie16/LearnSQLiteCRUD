@@ -1,7 +1,9 @@
 package com.example.learnsqlitecrud;
 
+import android.widget.TextView;
+
 public class Item {
-//    int id;
+    int id;
     String firstItem;
     String secondItem;
 
