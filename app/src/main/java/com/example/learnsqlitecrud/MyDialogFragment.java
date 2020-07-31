@@ -51,8 +51,9 @@ public class MyDialogFragment extends DialogFragment {
                                 if (id != 0) {
                                     item.id = id;
                                     new ItemStorage(getContext()).updateItem(item);
+                                } else {
+                                    new ItemStorage(getContext()).createItem(item);
                                 }
-                                new ItemStorage(getContext()).createItem(item);
                             }
                         })
                 .create();
